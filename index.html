@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uyum Market | Çankaya Market ve Manav, Eve Teslimat</title>
+<meta name="description" content="Uyum Market, Çankaya Üsküp Caddesi'nde market ve manav. Telefonla sipariş verin, kapınıza getirelim. Her gün 07:00'den itibaren açık. (0312) 467 42 47">
+<link rel="canonical" href="https://uyummarket.com.tr/">
+<meta name="theme-color" content="#d0202e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Uyum Market | Çankaya Market ve Manav">
+<meta property="og:description" content="Telefonla sipariş verin, kapınıza getirelim. (0312) 467 42 47">
+<meta property="og:image" content="https://uyummarket.com.tr/img/dukkan.jpg">
+<meta property="og:locale" content="tr_TR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GroceryStore",
+  "name": "Uyum Market",
+  "description": "Çankaya Üsküp Caddesi'nde market ve manav. Eve teslimat yapılır.",
+  "url": "https://uyummarket.com.tr/",
+  "image": "https://uyummarket.com.tr/img/dukkan.jpg",
+  "telephone": "+90-312-467-42-47",
+  "priceRange": "₺",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Üsküp Caddesi No:30",
+    "addressLocality": "Çankaya",
+    "addressRegion": "Ankara",
+    "postalCode": "06690",
+    "addressCountry": "TR"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 39.8933452, "longitude": 32.857633 },
+  "hasMap": "https://maps.google.com/?cid=9902812242018046156",
+  "sameAs": ["https://maps.google.com/?cid=9902812242018046156"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "07:00", "closes": "23:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "07:00", "closes": "23:30" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "07:00", "closes": "22:30" }
+  ],
+  "paymentAccepted": "Kredi kartı, Banka kartı, Temassız ödeme, Karekod (QR)",
+  "currenciesAccepted": "TRY"
+}
+</script>
+
+<style>
+  :root{
+    --tabela:#d0202e;      /* dükkan tabelasının kırmızısı */
+    --tabela-koyu:#a3141f;
+    --manav:#2f7d32;       /* sebze yeşili */
+    --kraft:#e9d5ae;       /* fiyat kartı kartonu */
+    --kraft-koyu:#c9ad7c;
+    --murekkep:#1f1a17;
+    --kagit:#fbfaf6;
+    --cizgi:#e6e0d4;
+    --soluk:#6b635b;
+    --wide:"Archivo",system-ui,sans-serif;
+    --el:"Caveat","Comic Sans MS",cursive;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--kagit);color:var(--murekkep);font:400 1.0625rem/1.6 var(--wide)}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--manav);outline-offset:3px;border-radius:4px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+  /* Hero: fotoğraf + tabela */
+  .hero{display:grid;grid-template-columns:1fr}
+  .photo{
+    min-height:52vh;background-color:#3a2f27;
+    background-image:url("img/dukkan.jpg"),url("https://lh3.googleusercontent.com/SJF4Izf2J5Y9c9Bb5k1-EOu10scIC_Maq-SgQky4bMbPXuQFsd6qFOgxIdIXGyY9=w1600-h900-k-no");
+    background-size:cover;background-position:center 40%;
+  }
+  .tabela{background:var(--tabela);color:#fff;padding:28px 0 32px}
+  .logo{margin:0;font-weight:900;font-stretch:125%;font-size:clamp(3.2rem,13vw,5.6rem);line-height:.9;letter-spacing:-.02em}
+  .logo-alt{margin:6px 0 0;font-weight:500;font-stretch:110%;font-size:1.05rem;opacity:.92}
+  .durum{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:600;font-size:.95rem;background:#fff;color:var(--murekkep);padding:6px 12px 6px 10px;border-radius:999px}
+  .durum::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--soluk)}
+  .durum.acik::before{background:var(--manav)}
+
+  .siparis{margin-top:26px;border-top:2px solid rgba(255,255,255,.35);padding-top:22px}
+  .siparis p{margin:0 0 8px;font-size:1.15rem;font-weight:600;font-stretch:105%}
+  .tel{display:inline-block;text-decoration:none;font-weight:850;font-stretch:80%;font-size:clamp(2.4rem,10.5vw,3.9rem);line-height:1;letter-spacing:-.01em;font-variant-numeric:tabular-nums;border-bottom:4px solid #fff;padding-bottom:4px}
+  .tel:hover{border-bottom-color:var(--kraft)}
+  .siparis small{display:block;margin-top:12px;font-size:.95rem;opacity:.9}
+
+  @media (min-width:900px){
+    .hero{grid-template-columns:1.15fr 1fr;min-height:620px}
+    .photo{min-height:100%}
+    .tabela{display:flex;align-items:center;padding:48px 0}
+    .tabela .wrap{padding:0 48px;margin:0}
+  }
+
+  /* Fiyat kartı: çalışma saatleri */
+  .orta{display:grid;gap:40px;padding-top:56px;padding-bottom:24px}
+  @media (min-width:900px){ .orta{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:64px;align-items:start} }
+
+  .kart{
+    position:relative;background:var(--kraft);color:#2b2118;padding:36px 26px 24px;
+    border-radius:6px 6px 10px 10px;transform:rotate(-1.6deg);
+    box-shadow:0 1px 0 var(--kraft-koyu),0 14px 24px -14px rgba(60,40,10,.45);
+    max-width:420px;margin:30px auto 0;
+  }
+  .kart::before{content:"";position:absolute;top:12px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--kagit);box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+  .kart::after{content:"";position:absolute;top:-30px;left:50%;width:2px;height:44px;background:#8a5a2b;transform:rotate(8deg);transform-origin:bottom}
+  .kart h2{margin:0 0 6px;font:700 2.2rem/1.1 var(--el);text-align:center}
+  .kart table{width:100%;border-collapse:collapse;font:600 1.6rem/1.25 var(--el)}
+  .kart td{padding:6px 0;border-bottom:1.5px dashed rgba(43,33,24,.3)}
+  .kart td:last-child{text-align:right;white-space:nowrap}
+  .kart tr.bugun td{color:var(--tabela-koyu)}
+  .kart .not{margin:12px 0 0;text-align:center;font:600 1.45rem/1.2 var(--el)}
+
+  /* Bilgi */
+  .bilgi h2{margin:0 0 10px;font-weight:800;font-stretch:115%;font-size:1.45rem;line-height:1.2}
+  .bilgi section+section{margin-top:34px;padding-top:28px;border-top:1px solid var(--cizgi)}
+  .reyon{margin:0;font-size:clamp(1.35rem,3.6vw,1.75rem);font-weight:600;font-stretch:90%;line-height:1.35;max-width:28ch}
+  .reyon span{white-space:nowrap}
+  .teslimat p{margin:0;max-width:52ch}
+  .teslimat strong{color:var(--manav)}
+  .odeme{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+  .odeme li{border:1.5px solid var(--murekkep);border-radius:6px;padding:4px 10px;font-weight:600;font-size:.95rem}
+
+  /* Harita */
+  .harita{margin-top:56px;position:relative;background:var(--kraft)}
+  .harita .cerceve{position:relative;height:min(70vh,520px);min-height:360px}
+  .harita iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+  .harita .yedek{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;text-decoration:none}
+  .adres{position:relative;z-index:2;background:#fff;color:var(--murekkep);padding:20px 22px;border-top:6px solid var(--tabela);box-shadow:0 10px 30px -10px rgba(0,0,0,.35)}
+  .adres h2{margin:0 0 4px;font-weight:800;font-stretch:115%;font-size:1.3rem}
+  .adres address{font-style:normal;margin:0 0 14px}
+  .butonlar{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border-radius:8px;font-weight:700;text-decoration:none;font-size:1rem}
+  .btn-kirmizi{background:var(--tabela);color:#fff}
+  .btn-kirmizi:hover{background:var(--tabela-koyu)}
+  .btn-cizgi{border:2px solid var(--murekkep)}
+  @media (min-width:900px){
+    .adres{position:absolute;left:max(16px,calc((100vw - 1080px)/2 + 16px));top:32px;width:360px}
+  }
+
+  footer{padding-top:28px;padding-bottom:104px;color:var(--soluk);font-size:.95rem}
+  footer p{margin:0}
+
+  .ara-bar{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--kagit);border-top:1px solid var(--cizgi)}
+  .ara-bar .btn{width:100%;font-size:1.1rem;padding:14px}
+  @media (min-width:900px){ .ara-bar{display:none} footer{padding-bottom:28px} }
+  @media (prefers-reduced-motion:reduce){ .kart{transform:none} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="photo" role="img" aria-label="Uyum Market dükkanının önü ve manav tezgâhı"></div>
+  <div class="tabela">
+    <div class="wrap">
+      <h1 class="logo">uyum</h1>
+      <p class="logo-alt">market &amp; manav, Çankaya</p>
+      <span class="durum" id="durum" aria-live="polite">Çalışma saatleri aşağıda</span>
+
+      <div class="siparis">
+        <p>Telefonla sipariş verin, kapınıza getirelim.</p>
+        <a class="tel" href="tel:+903124674247">0312 467 42 47</a>
+        <small>Market alışverişinizin tamamını eve teslim ediyoruz.</small>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap orta">
+  <div>
+    <div class="kart">
+      <h2>Açığız</h2>
+      <table id="saatler">
+        <tr data-gun="1,2,3,4"><td>Pzt – Prş</td><td>07:00 – 23:00</td></tr>
+        <tr data-gun="5,6"><td>Cuma, Cmt</td><td>07:00 – 23:30</td></tr>
+        <tr data-gun="0"><td>Pazar</td><td>07:00 – 22:30</td></tr>
+      </table>
+      <p class="not">Bayramlarda da açığız</p>
+    </div>
+  </div>
+
+  <div class="bilgi">
+    <section>
+      <h2>Raflarda neler var</h2>
+      <p class="reyon">
+        <span>Taze meyve ve sebze,</span> <span>günlük gıda,</span> <span>içecek,</span>
+        <span>temizlik ve</span> <span>kişisel bakım.</span>
+      </p>
+    </section>
+
+    <section class="teslimat">
+      <h2>Eve teslimat</h2>
+      <p>Arayın, listenizi söyleyin. <strong>Siparişinizi hazırlayıp kısa sürede kapınıza getiriyoruz.</strong></p>
+      <!-- Teslimat bölgesi belli olunca:
+      <p>Teslimat yaptığımız yerler: Çankaya, Kavaklıdere, ...</p> -->
+    </section>
+
+    <section>
+      <h2>Ödeme</h2>
+      <ul class="odeme">
+        <li>Kredi kartı</li>
+        <li>Banka kartı</li>
+        <li>Temassız</li>
+        <li>Karekod (QR)</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<section class="harita" aria-label="Konum">
+  <div class="cerceve">
+    <a class="yedek" href="https://maps.google.com/?cid=9902812242018046156" rel="noopener">Haritayı Google Haritalar'da aç</a>
+    <iframe title="Uyum Market'in haritadaki konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      src="https://maps.google.com/maps?q=Uyum+Market,+%C3%9Csk%C3%BCp+Cd.+No:30,+%C3%87ankaya,+Ankara&amp;ll=39.8933452,32.857633&amp;hl=tr&amp;z=17&amp;output=embed"></iframe>
+  </div>
+  <div class="adres">
+    <h2>Bizi bulun</h2>
+    <address>Üsküp Caddesi No:30<br>06690 Çankaya / Ankara</address>
+    <div class="butonlar">
+      <a class="btn btn-kirmizi" href="https://www.google.com/maps/dir/?api=1&amp;destination=39.8933452,32.857633" rel="noopener">Yol tarifi al</a>
+      <a class="btn btn-cizgi" href="https://maps.google.com/?cid=9902812242018046156" rel="noopener">Fotoğraflara bak</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <p>© <span id="yil">2026</span> Uyum Market, Üsküp Cd. No:30, Çankaya/Ankara. Telefon: <a href="tel:+903124674247">(0312) 467 42 47</a></p>
+</footer>
+
+<div class="ara-bar"><a class="btn btn-kirmizi" href="tel:+903124674247">Ara ve sipariş ver</a></div>
+
+<script>
+  (function(){
+    var kapanis = {0:"22:30",1:"23:00",2:"23:00",3:"23:00",4:"23:00",5:"23:30",6:"23:30"};
+    var simdi = new Date(new Date().toLocaleString("en-US",{timeZone:"Europe/Istanbul"}));
+    var gun = simdi.getDay(), dk = simdi.getHours()*60 + simdi.getMinutes();
+    var k = kapanis[gun].split(":"), kapanisDk = (+k[0])*60 + (+k[1]);
+    var acik = dk >= 420 && dk < kapanisDk;
+    var el = document.getElementById("durum");
+    el.textContent = acik ? "Şu an açık, " + kapanis[gun] + "'e kadar" : "Şu an kapalı, 07:00'de açılıyor";
+    if (acik) el.classList.add("acik");
+    document.querySelectorAll("#saatler tr").forEach(function(tr){
+      if (tr.dataset.gun.split(",").indexOf(String(gun)) > -1) tr.classList.add("bugun");
+    });
+    document.getElementById("yil").textContent = simdi.getFullYear();
+  })();
+</script>
+</body>
+</html>

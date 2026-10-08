@@ -26,3 +26,9 @@ Statik, bağımlılıksız tek bir `index.html`.
 - Antre Gourmet tarzı online sipariş: fiyatlı ürünler + sepet (Shopify vb.). Şimdilik yok; sipariş telefon/WhatsApp ile.
 - Reyon kartlarına gerçek reyon fotoğrafları.
 - "Bu hafta manavda" mevsimlik şerit.
+
+## Ürün listesi
+- Ürünler `urunler.js` dosyasında (Sahadi tarzı fotoğraflı kartlar). Ürün eklemek: `{ ad, reyon, foto }` satırı ekle; silmek: satırı sil.
+- `foto`: Unsplash kimliği ya da kendi görselin (ör. `img/urun/domates.jpg`). Boşsa fotoğrafsız sade kart çıkar.
+- Fiyat yok (bilerek). Dükkanda olmayan ürünleri sil.
+- Ana sayfada ilk 10 ürün görünür, "Tüm ürünleri göster" ile hepsi açılır.

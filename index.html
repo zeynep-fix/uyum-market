@@ -63,6 +63,7 @@
     --sans:"Montserrat",system-ui,sans-serif;
   }
   *{box-sizing:border-box}
+  [hidden]{display:none !important}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{margin:0;background:var(--beyaz);color:var(--murekkep);font:400 1rem/1.65 var(--sans)}
@@ -133,6 +134,44 @@
   @media (min-width:900px){ .reyon-buyuk{grid-row:span 2;min-height:0} }
   .reyon-genis{grid-column:span 2;aspect-ratio:auto;min-height:200px}
 
+
+  /* Reyon kartı bağlantısı */
+  .reyon-link{position:absolute;inset:0;z-index:2}
+  .reyon-link:focus-visible{outline-offset:-4px}
+
+  /* Ürünler (Sahadi tarzı kart ızgarası) */
+  .bolum-urun{padding-top:8px}
+  .gizli{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .urun-ust{display:flex;flex-direction:column;gap:14px;margin-bottom:10px}
+  @media (min-width:900px){ .urun-ust{flex-direction:row;align-items:center;justify-content:space-between} }
+  .filtreler{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .filtreler::-webkit-scrollbar{display:none}
+  @media (min-width:900px){ .filtreler{flex-wrap:wrap;overflow:visible} }
+  .filtre{flex:0 0 auto;font:600 .8rem/1 var(--sans);padding:10px 16px;border-radius:999px;border:1.5px solid var(--murekkep);background:#fff;color:var(--murekkep);cursor:pointer}
+  .filtre:hover{background:var(--krem)}
+  .filtre[aria-pressed="true"]{background:var(--murekkep);color:#fff}
+  .ara-kutu{position:relative;flex:0 0 auto;width:100%}
+  @media (min-width:900px){ .ara-kutu{width:260px} }
+  .ara-kutu svg{position:absolute;left:14px;top:50%;width:18px;height:18px;margin-top:-9px;color:var(--soluk)}
+  .ara-kutu input{width:100%;padding:12px 16px 12px 42px;font:500 .95rem var(--sans);border:1.5px solid var(--cizgi);border-radius:999px;background:#fff;color:var(--murekkep)}
+  .ara-kutu input:focus{outline:none;border-color:var(--murekkep)}
+  .urun-sayi{margin:0 0 16px;font-size:.82rem;color:var(--soluk)}
+  .urun-grid{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  @media (min-width:640px){ .urun-grid{grid-template-columns:repeat(3,minmax(0,1fr))} }
+  @media (min-width:1000px){ .urun-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:16px} }
+  .urun{background:#fff;border:1px solid var(--cizgi);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+  .urun[hidden]{display:none}
+  .urun-foto{aspect-ratio:1/1;background:var(--krem);overflow:hidden}
+  .urun-foto img{width:100%;height:100%;object-fit:cover}
+  .urun-foto.bos{display:flex;align-items:center;justify-content:center;font:600 2.6rem/1 var(--serif);color:var(--kirmizi)}
+  .urun-yazi{padding:12px 14px 14px}
+  .urun-yazi small{display:block;font-size:.7rem;font-weight:600;color:var(--soluk);margin-bottom:3px}
+  .urun-yazi h3{margin:0;font:600 1.15rem/1.2 var(--serif)}
+  .daha-fazla{text-align:center;margin-top:24px}
+  .daha-fazla .btn{color:var(--murekkep)}
+  .bulunamadi{text-align:center;margin:24px 0 0;font-size:.95rem}
+  .bulunamadi a{color:var(--kirmizi);font-weight:700}
+
   /* Teslimat bandı */
   .bant{display:grid;grid-template-columns:1fr;background:var(--krem);border-radius:4px;overflow:hidden}
   @media (min-width:860px){ .bant{grid-template-columns:1.1fr 1fr} }
@@ -198,14 +237,15 @@
 
 <nav class="menu" aria-label="Reyonlar">
   <ul>
-    <li><a href="#manav">Manav</a></li>
-    <li><a href="#kahvalti">Süt ve Kahvaltılık</a></li>
-    <li><a href="#sarkuteri">Şarküteri</a></li>
-    <li><a href="#ekmek">Ekmek ve Fırın</a></li>
-    <li><a href="#kurugida">Kuru Gıda</a></li>
-    <li><a href="#icecek">İçecek ve Su</a></li>
-    <li><a href="#atistirmalik">Atıştırmalık</a></li>
-    <li><a href="#temizlik">Temizlik ve Bakım</a></li>
+    <li><a href="#r-manav">Manav</a></li>
+    <li><a href="#r-kahvalti">Süt ve Kahvaltılık</a></li>
+    <li><a href="#r-sarkuteri">Şarküteri</a></li>
+    <li><a href="#r-ekmek">Ekmek ve Fırın</a></li>
+    <li><a href="#r-kurugida">Kuru Gıda</a></li>
+    <li><a href="#r-icecek">İçecek ve Su</a></li>
+    <li><a href="#r-atistirmalik">Atıştırmalık</a></li>
+    <li><a href="#r-temizlik">Temizlik ve Bakım</a></li>
+    <li><a href="#urunler">Tüm ürünler</a></li>
   </ul>
 </nav>
 
@@ -228,38 +268,67 @@
     </div>
     <ul class="reyon-grid">
       <li class="reyon reyon-buyuk" id="manav">
+        <a class="reyon-link" href="#r-manav" aria-label="Manav ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=1200&q=70&auto=format&fit=crop" alt="Tezgâhta çeşit çeşit taze sebze" loading="lazy">
         <div><h3>Manav</h3><p>Her sabah gelen taze meyve ve sebze</p></div>
       </li>
       <li class="reyon" id="kahvalti">
+        <a class="reyon-link" href="#r-kahvalti" aria-label="Süt ve Kahvaltılık ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1633040243823-6bf8d4edb0ec?w=700&q=70&auto=format&fit=crop" alt="Zengin bir kahvaltı sofrası" loading="lazy">
         <div><h3>Süt ve Kahvaltılık</h3><p>Süt, yoğurt, yumurta, bal, reçel</p></div>
       </li>
       <li class="reyon" id="sarkuteri">
+        <a class="reyon-link" href="#r-sarkuteri" aria-label="Şarküteri ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1748274240982-6b99b423ee93?w=700&q=70&auto=format&fit=crop" alt="Peynir ve zeytin" loading="lazy">
         <div><h3>Şarküteri</h3><p>Peynir, zeytin, sucuk, salam</p></div>
       </li>
       <li class="reyon" id="ekmek">
+        <a class="reyon-link" href="#r-ekmek" aria-label="Ekmek ve Fırın ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1566698629409-787a68fc5724?w=700&q=70&auto=format&fit=crop" alt="Sepette çeşit çeşit ekmek" loading="lazy">
         <div><h3>Ekmek ve Fırın</h3><p>Günlük ekmek ve unlu mamuller</p></div>
       </li>
       <li class="reyon" id="kurugida">
+        <a class="reyon-link" href="#r-kurugida" aria-label="Kuru Gıda ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1509043183980-23be96ae4109?w=700&q=70&auto=format&fit=crop" alt="Kavanozlarda bakliyat ve tahıllar" loading="lazy">
         <div><h3>Kuru Gıda</h3><p>Bakliyat, makarna, pirinç, un, yağ</p></div>
       </li>
       <li class="reyon" id="icecek">
+        <a class="reyon-link" href="#r-icecek" aria-label="İçecek ve Su ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1758445515456-d2c834db05fc?w=700&q=70&auto=format&fit=crop" alt="Soğutucuda şişe ve kutu içecekler" loading="lazy">
         <div><h3>İçecek ve Su</h3><p>Su, meyve suyu, gazlı içecek, çay, kahve</p></div>
       </li>
       <li class="reyon" id="atistirmalik">
+        <a class="reyon-link" href="#r-atistirmalik" aria-label="Atıştırmalık ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=700&q=70&auto=format&fit=crop" alt="Kutuda çeşitli çikolatalar" loading="lazy">
         <div><h3>Atıştırmalık</h3><p>Çikolata, bisküvi, cips, kuruyemiş</p></div>
       </li>
       <li class="reyon reyon-genis" id="temizlik">
+        <a class="reyon-link" href="#r-temizlik" aria-label="Temizlik ve Bakım ürünlerini gör"></a>
         <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=700&q=70&auto=format&fit=crop" alt="Temizlik spreyi tutan el" loading="lazy">
         <div><h3>Temizlik ve Bakım</h3><p>Deterjan, kâğıt ürünleri, kişisel bakım</p></div>
       </li>
     </ul>
+  </section>
+
+
+  <section class="bolum bolum-urun wrap" id="urunler" aria-labelledby="urun-baslik">
+    <div class="bolum-baslik">
+      <h2 id="urun-baslik">Ürünlerimiz</h2>
+      <p>En çok aranan ürünlerimizden bir seçki. Listede göremediğinizi de sorun, bulup getirelim.</p>
+    </div>
+    <div class="urun-ust">
+      <div class="filtreler" id="filtreler" role="group" aria-label="Reyona göre filtrele"></div>
+      <div class="ara-kutu">
+        <label for="urun-ara" class="gizli">Ürün ara</label>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="urun-ara" type="search" placeholder="Ürün ara" autocomplete="off">
+      </div>
+    </div>
+    <p class="urun-sayi" id="urun-sayi" aria-live="polite"></p>
+    <ul class="urun-grid" id="urun-grid"></ul>
+    <div class="daha-fazla"><button type="button" class="btn btn-cizgi" id="daha-fazla" hidden>TÜM ÜRÜNLERİ GÖSTER</button></div>
+    <p class="bulunamadi" id="bulunamadi" hidden>Bu ürünü listede bulamadık. <a href="tel:+903124674247">Arayıp sorun</a>, büyük ihtimalle vardır.</p>
+    <noscript><p class="bulunamadi">Ürünlerimiz için lütfen arayın: <a href="tel:+903124674247">0312 467 42 47</a></p></noscript>
   </section>
 
   <section class="wrap" aria-labelledby="teslimat-baslik">
@@ -327,6 +396,70 @@
 
 <div class="ara-bar"><a class="btn btn-kirmizi" href="tel:+903124674247">ARA, SİPARİŞ VER</a></div>
 
+
+<script src="urunler.js"></script>
+<script>
+  (function(){
+    var reyonlar = window.REYONLAR || [], urunler = window.URUNLER || [];
+    var grid = document.getElementById("urun-grid"), filtreKutu = document.getElementById("filtreler");
+    var giris = document.getElementById("urun-ara"), sayi = document.getElementById("urun-sayi"), yok = document.getElementById("bulunamadi");
+    if (!grid || !urunler.length) return;
+    var reyonAd = {}; reyonlar.forEach(function(r){ reyonAd[r.id] = r.ad; });
+    var kucuk = function(t){ return t.toLocaleLowerCase("tr"); };
+    var secili = "hepsi", tumu = false, ILK = 10;
+    var dahaBtn = document.getElementById("daha-fazla");
+    dahaBtn.addEventListener("click", function(){ tumu = true; uygula(); });
+
+    function fotoUrl(f){ return /^[0-9]+-[0-9a-f]+$/.test(f) ? "https://images.unsplash.com/photo-" + f + "?w=500&h=500&fit=crop&q=70&auto=format" : f; }
+
+    urunler.forEach(function(u){
+      var li = document.createElement("li"); li.className = "urun"; li.dataset.reyon = u.reyon; li.dataset.ad = kucuk(u.ad);
+      var fk = document.createElement("div"); fk.className = "urun-foto";
+      if (u.foto) { var img = document.createElement("img"); img.src = fotoUrl(u.foto); img.alt = u.ad; img.loading = "lazy"; fk.appendChild(img); }
+      else { fk.classList.add("bos"); fk.textContent = u.ad.charAt(0); }
+      var yz = document.createElement("div"); yz.className = "urun-yazi";
+      var rk = document.createElement("small"); rk.textContent = reyonAd[u.reyon] || "";
+      var h = document.createElement("h3"); h.textContent = u.ad;
+      yz.appendChild(rk); yz.appendChild(h); li.appendChild(fk); li.appendChild(yz); grid.appendChild(li);
+    });
+
+    function filtreButon(id, ad){
+      var b = document.createElement("button"); b.type = "button"; b.className = "filtre"; b.dataset.id = id; b.textContent = ad;
+      b.setAttribute("aria-pressed", id === secili ? "true" : "false");
+      b.addEventListener("click", function(){ sec(id); });
+      filtreKutu.appendChild(b);
+    }
+    filtreButon("hepsi", "Tümü");
+    reyonlar.forEach(function(r){ if (urunler.some(function(u){ return u.reyon === r.id; })) filtreButon(r.id, r.ad); });
+
+    function uygula(){
+      var q = kucuk(giris.value.trim()), n = 0, gosterilen = 0;
+      var sinirli = secili === "hepsi" && !q && !tumu;
+      grid.querySelectorAll(".urun").forEach(function(li){
+        var uygun = (secili === "hepsi" || li.dataset.reyon === secili) && (!q || li.dataset.ad.indexOf(q) > -1);
+        if (uygun) n++;
+        var goster = uygun && (!sinirli || gosterilen < ILK);
+        li.hidden = !goster; if (goster) gosterilen++;
+      });
+      dahaBtn.hidden = !(sinirli && n > ILK);
+      sayi.textContent = n + " ürün" + (secili !== "hepsi" ? ", " + reyonAd[secili] : "");
+      yok.hidden = n > 0;
+    }
+    function sec(id){
+      secili = reyonAd[id] ? id : "hepsi";
+      filtreKutu.querySelectorAll(".filtre").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.id === secili ? "true" : "false"); });
+      uygula();
+    }
+    giris.addEventListener("input", function(){ if (giris.value.trim() && secili !== "hepsi") { sec("hepsi"); } else { uygula(); } });
+
+    function hashAc(){
+      var m = location.hash.match(/^#r-(.+)$/);
+      if (m) { sec(m[1]); giris.value = ""; uygula(); document.getElementById("urunler").scrollIntoView(); }
+    }
+    window.addEventListener("hashchange", hashAc);
+    hashAc(); uygula();
+  })();
+</script>
 <script>
   (function(){
     var kapanis = {0:"22:30",1:"23:00",2:"23:00",3:"23:00",4:"23:00",5:"23:30",6:"23:30"};

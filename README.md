@@ -21,3 +21,8 @@ Statik, bağımlılıksız tek bir `index.html`.
 - JSON-LD tipi `GroceryStore`; saatler ve adres Google profiliyle birebir aynı tutuldu.
   Saat değişirse **hem profili hem bu dosyayı** güncelle (NAP tutarlılığı).
 - Üstteki "Şu an açık/kapalı" rozeti Europe/Istanbul saatine göre istemci tarafında hesaplanıyor.
+
+## Gelecek fikirler
+- Antre Gourmet tarzı online sipariş: fiyatlı ürünler + sepet (Shopify vb.). Şimdilik yok; sipariş telefon/WhatsApp ile.
+- Reyon kartlarına gerçek reyon fotoğrafları.
+- "Bu hafta manavda" mevsimlik şerit.

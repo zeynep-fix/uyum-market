@@ -2,6 +2,9 @@
   Uyum Market ürünleri
   --------------------
   Ürün eklemek:  { ad: "Ürün adı", reyon: "manav", foto: "" }
+  Markalı ürün:  { ad: "Sütaş Beyaz Peynir", reyon: "kahvalti", marka: "Sütaş", tur: "Beyaz peynir" }
+    - Fotoğraf yoksa kraft "fiyat kartonu" görünümünde marka + tür yazan kart çıkar.
+    - Kendi çektiğin fotoğrafı eklersen (foto: "img/urun/sutas-beyaz.jpg") fotoğraflı karta döner.
     - reyon: aşağıdaki REYONLAR listesindeki id'lerden biri
     - foto:  tam görsel adresi (ör. "img/urun/domates.jpg") ya da Unsplash kimliği (ör. "1582284540020-8acbe03f4924").
              Boş bırakılırsa kart fotoğrafsız, sade bir kartla gösterilir.
@@ -93,6 +96,7 @@ window.URUNLER = [
   { ad: "Çay",           reyon: "kurugida", foto: "1715017245420-9638115138a4" },
 
   // İçecek ve su
+  { ad: "Su (pet şişe)",  reyon: "icecek", foto: "1595994195534-d5219f02f99f" },
   { ad: "Maden suyu",    reyon: "icecek", foto: "1561041695-d2fadf9f318c" },
   { ad: "Meyve suyu",    reyon: "icecek", foto: "1640213505284-21352ee0d76b" },
   { ad: "Gazlı içecekler", reyon: "icecek", foto: "1674176508097-463b009c6004" },
@@ -111,5 +115,76 @@ window.URUNLER = [
   { ad: "Kâğıt havlu",   reyon: "temizlik", foto: "1598046937985-11c320dfd379" },
   { ad: "Şampuan",       reyon: "temizlik", foto: "1602143407151-7111542de6e8" },
   { ad: "Sıvı sabun",    reyon: "temizlik", foto: "1616622236995-cb00e537365e" },
-  { ad: "Diş macunu ve fırçası", reyon: "temizlik", foto: "1676897288522-e8a081e71430" }
+  { ad: "Diş macunu ve fırçası", reyon: "temizlik", foto: "1676897288522-e8a081e71430" },
+
+  // --- Ek ürünler ---
+  { ad: "Kefir", reyon: "kahvalti", foto: "1600434610853-fcf8e079731b" },
+  { ad: "Lor peyniri", reyon: "kahvalti", foto: "1632200729570-1043effd1b77" },
+  { ad: "Krem peynir", reyon: "kahvalti", foto: "1663447170676-99f1ec83931a" },
+  { ad: "Kaymak", reyon: "kahvalti", foto: "1728994062543-74a1dc2c9392" },
+  { ad: "Yeşil zeytin", reyon: "kahvalti", foto: "1698775942613-3e9fc114b2a1" },
+  { ad: "Pekmez", reyon: "kahvalti", foto: "1709297744868-2f9898eea17e" },
+  { ad: "Kakaolu fındık kreması", reyon: "kahvalti", foto: "1676817167465-38a0fe938c53" },
+  { ad: "Kahvaltılık gevrek", reyon: "kahvalti", foto: "1622711321771-4a00d2bc0350" },
+  { ad: "Tahin helvası", reyon: "kahvalti", foto: "1678977252022-303f13c019cc" },
+  { ad: "Fıstık ezmesi", reyon: "kahvalti", foto: "1691480208637-6ed63aac6694" },
+  { ad: "Margarin", reyon: "kahvalti", foto: "1660190368311-64d54386e494" },
+  { ad: "Sosis", reyon: "sarkuteri", foto: "1638368593249-7cadb261e8b3" },
+  { ad: "Pastırma", reyon: "sarkuteri", foto: "1777557863930-ed0d73e970dc" },
+  { ad: "Hindi füme", reyon: "sarkuteri", foto: "1689774504345-6cf299b0b312" },
+  { ad: "Tam buğday ekmeği", reyon: "ekmek", foto: "1509440159596-0249088772ff" },
+  { ad: "Tost ekmeği", reyon: "ekmek", foto: "1663904460424-91895028aa9e" },
+  { ad: "Poğaça", reyon: "ekmek", foto: "1592148121354-383fe3029e10" },
+  { ad: "Hamburger ekmeği", reyon: "ekmek", foto: "1632552544552-3ca612a328ac" },
+  { ad: "Kruvasan", reyon: "ekmek", foto: "1623334044303-241021148842" },
+  { ad: "Yeşil mercimek", reyon: "kurugida", foto: "1770617475579-db217d1c6059" },
+  { ad: "Kuru fasulye", reyon: "kurugida", foto: "1728931340275-430196814dc5" },
+  { ad: "Barbunya", reyon: "kurugida", foto: "1564894809611-1742fc40ed80" },
+  { ad: "Tuz", reyon: "kurugida", foto: "1634612831148-03a8550e1d52" },
+  { ad: "Karabiber", reyon: "kurugida", foto: "1649951806971-ad0e00408773" },
+  { ad: "Kimyon", reyon: "kurugida", foto: "1600791102844-208e695205f6" },
+  { ad: "Kekik", reyon: "kurugida", foto: "1593040009721-0e96055348b6" },
+  { ad: "Sirke", reyon: "kurugida", foto: "1781460805187-51f03c7a2c61" },
+  { ad: "Hardal", reyon: "kurugida", foto: "1701188543419-f2e932565056" },
+  { ad: "Ton balığı", reyon: "kurugida", foto: "1622756144420-6877b1b7476e" },
+  { ad: "Konserve çeşitleri", reyon: "kurugida", foto: "1738618140037-09e11c8e644a" },
+  { ad: "Turşu", reyon: "kurugida", foto: "1617854307432-13950e24ba07" },
+  { ad: "Puding", reyon: "kurugida", foto: "1673551494277-92204546b504" },
+  { ad: "Hazır çorba", reyon: "kurugida", foto: "1476718406336-bb5a9690ee2a" },
+  { ad: "Limonata", reyon: "icecek", foto: "1507281549113-040fcfef650e" },
+  { ad: "Türk kahvesi", reyon: "icecek", foto: "1757079649052-a24c6ab32c64" },
+  { ad: "Hazır kahve", reyon: "icecek", foto: "1664002044539-08b9f6273473" },
+  { ad: "Filtre kahve", reyon: "icecek", foto: "1562051036-e0eea191d42f" },
+  { ad: "Bitki çayları", reyon: "icecek", foto: "1648455321715-e8ed86188c0e" },
+  { ad: "Kakao", reyon: "icecek", foto: "1659055939237-bc2be8be2f14" },
+  { ad: "Sıcak çikolata", reyon: "icecek", foto: "1637572815755-c4b80092dce1" },
+  { ad: "Kraker", reyon: "atistirmalik", foto: "1701341404788-b85484ca379e" },
+  { ad: "Kek", reyon: "atistirmalik", foto: "1514435390218-898a0e01517a" },
+  { ad: "Kurabiye", reyon: "atistirmalik", foto: "1621297075730-16b5bd8913cf" },
+  { ad: "Patlamış mısır", reyon: "atistirmalik", foto: "1578849278619-e73505e9610f" },
+  { ad: "Yer fıstığı", reyon: "atistirmalik", foto: "1549978113-29eb25c8177f" },
+  { ad: "Badem", reyon: "atistirmalik", foto: "1608797178974-15b35a64ede9" },
+  { ad: "Antep fıstığı", reyon: "atistirmalik", foto: "1502825751399-28baa9b81efe" },
+  { ad: "Leblebi", reyon: "atistirmalik", foto: "1641913712124-a58d267b6997" },
+  { ad: "Ay çekirdeği", reyon: "atistirmalik", foto: "1635843111961-06c71c3ed8cf" },
+  { ad: "Lokum", reyon: "atistirmalik", foto: "1635847457796-c6d78fa0fbc9" },
+  { ad: "Şekerleme", reyon: "atistirmalik", foto: "1606797020447-cf605fc9e408" },
+  { ad: "Sakız", reyon: "atistirmalik", foto: "1565225945512-1aa5e39ad5f9" },
+  { ad: "Kuru kayısı", reyon: "atistirmalik", foto: "1723110565328-9dbeef603d19" },
+  { ad: "Kuru üzüm", reyon: "atistirmalik", foto: "1642102903918-b97c37955bbf" },
+  { ad: "Çamaşır deterjanı", reyon: "temizlik", foto: "1582735689369-4fe89db7114c" },
+  { ad: "Yumuşatıcı", reyon: "temizlik", foto: "1764242191304-9bafa618c3c4" },
+  { ad: "Çamaşır suyu", reyon: "temizlik", foto: "1583947214674-cd0e53873bb4" },
+  { ad: "Yüzey temizleyici", reyon: "temizlik", foto: "1563453392212-326f5e854473" },
+  { ad: "Sünger", reyon: "temizlik", foto: "1778178965223-e5a29e612504" },
+  { ad: "Çöp poşeti", reyon: "temizlik", foto: "1611830696076-462acd8aa9e9" },
+  { ad: "Alüminyum folyo", reyon: "temizlik", foto: "1618615580649-1a4bc3bea1e5" },
+  { ad: "Peçete", reyon: "temizlik", foto: "1580428456190-7348f304b927" },
+  { ad: "Islak mendil", reyon: "temizlik", foto: "1734599397715-f030c6d206a0" },
+  { ad: "Duş jeli", reyon: "temizlik", foto: "1673847401550-fd92f05614b9" },
+  { ad: "Kalıp sabun", reyon: "temizlik", foto: "1584305574647-0cc949a2bb9f" },
+  { ad: "Deodorant", reyon: "temizlik", foto: "1601065732186-512e2ab8f856" },
+  { ad: "Tıraş bıçağı", reyon: "temizlik", foto: "1681823162125-6dcd4d925c87" },
+  { ad: "Pamuk", reyon: "temizlik", foto: "1644052024906-5c9ad358e341" },
+  { ad: "Diş fırçası", reyon: "temizlik", foto: "1609840113564-ab4aba4956c4" }
 ];

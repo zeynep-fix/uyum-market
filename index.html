@@ -164,9 +164,17 @@
   .urun-foto{aspect-ratio:1/1;background:var(--krem);overflow:hidden}
   .urun-foto img{width:100%;height:100%;object-fit:cover}
   .urun-foto.bos{display:flex;align-items:center;justify-content:center;font:600 2.6rem/1 var(--serif);color:var(--kirmizi)}
+  .urun-foto.etiket{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:18px 12px;text-align:center;
+    background:#e9d5ae;background-image:radial-gradient(rgba(120,90,40,.10) 1px,transparent 1px);background-size:6px 6px}
+  .urun-foto.etiket::before{content:"";position:absolute;top:12px;left:50%;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#fff;box-shadow:inset 0 1px 2px rgba(0,0,0,.3)}
+  .etiket-marka{font:700 clamp(1.5rem,4.2vw,2.1rem)/1.05 var(--serif);color:var(--kirmizi);overflow-wrap:normal;word-break:keep-all;max-width:100%}
+  .etiket-marka.uzun{font-size:clamp(1.05rem,3vw,1.45rem)}
+  .etiket-tur{font:600 .78rem/1.3 var(--sans);color:#4a3b28;max-width:16ch}
   .urun-yazi{padding:12px 14px 14px}
   .urun-yazi small{display:block;font-size:.7rem;font-weight:600;color:var(--soluk);margin-bottom:3px}
   .urun-yazi h3{margin:0;font:600 1.15rem/1.2 var(--serif)}
+  #kaydirma-gozcu{height:1px}
+  .yukleniyor{text-align:center;font-size:.82rem;color:var(--soluk);margin:16px 0 0}
   .daha-fazla{text-align:center;margin-top:24px}
   .daha-fazla .btn{color:var(--murekkep)}
   .bulunamadi{text-align:center;margin:24px 0 0;font-size:.95rem}
@@ -326,6 +334,7 @@
     </div>
     <p class="urun-sayi" id="urun-sayi" aria-live="polite"></p>
     <ul class="urun-grid" id="urun-grid"></ul>
+    <div id="kaydirma-gozcu" aria-hidden="true"></div>
     <div class="daha-fazla"><button type="button" class="btn btn-cizgi" id="daha-fazla" hidden>TÜM ÜRÜNLERİ GÖSTER</button></div>
     <p class="bulunamadi" id="bulunamadi" hidden>Bu ürünü listede bulamadık. <a href="tel:+903124674247">Arayıp sorun</a>, büyük ihtimalle vardır.</p>
     <noscript><p class="bulunamadi">Ürünlerimiz için lütfen arayın: <a href="tel:+903124674247">0312 467 42 47</a></p></noscript>
@@ -403,19 +412,35 @@
     var reyonlar = window.REYONLAR || [], urunler = window.URUNLER || [];
     var grid = document.getElementById("urun-grid"), filtreKutu = document.getElementById("filtreler");
     var giris = document.getElementById("urun-ara"), sayi = document.getElementById("urun-sayi"), yok = document.getElementById("bulunamadi");
+    var dahaBtn = document.getElementById("daha-fazla"), gozcu = document.getElementById("kaydirma-gozcu");
     if (!grid || !urunler.length) return;
     var reyonAd = {}; reyonlar.forEach(function(r){ reyonAd[r.id] = r.ad; });
     var kucuk = function(t){ return t.toLocaleLowerCase("tr"); };
-    var secili = "hepsi", tumu = false, ILK = 10;
-    var dahaBtn = document.getElementById("daha-fazla");
-    dahaBtn.addEventListener("click", function(){ tumu = true; uygula(); });
+    var ILK = 10, PARCA = 20;
+    var secili = "hepsi", sonsuz = false, sinir = ILK;
 
     function fotoUrl(f){ return /^[0-9]+-[0-9a-f]+$/.test(f) ? "https://images.unsplash.com/photo-" + f + "?w=500&h=500&fit=crop&q=70&auto=format" : f; }
 
-    urunler.forEach(function(u){
+    // "Tümü" görünümünde reyonlar karışık gelsin: reyonlardan sırayla birer ürün al
+    var gruplar = {}, sira = [];
+    urunler.forEach(function(u){ (gruplar[u.reyon] = gruplar[u.reyon] || []).push(u); });
+    var anahtarlar = reyonlar.map(function(r){ return r.id; }).filter(function(id){ return gruplar[id]; });
+    Object.keys(gruplar).forEach(function(id){ if (anahtarlar.indexOf(id) < 0) anahtarlar.push(id); });
+    for (var i = 0, kaldi = true; kaldi; i++) {
+      kaldi = false;
+      anahtarlar.forEach(function(id){ if (gruplar[id][i]) { sira.push(gruplar[id][i]); kaldi = true; } });
+    }
+
+    sira.forEach(function(u){
       var li = document.createElement("li"); li.className = "urun"; li.dataset.reyon = u.reyon; li.dataset.ad = kucuk(u.ad);
       var fk = document.createElement("div"); fk.className = "urun-foto";
       if (u.foto) { var img = document.createElement("img"); img.src = fotoUrl(u.foto); img.alt = u.ad; img.loading = "lazy"; fk.appendChild(img); }
+      else if (u.marka) {
+        fk.classList.add("etiket");
+        var em = document.createElement("span"); em.className = "etiket-marka" + (u.marka.length > 9 ? " uzun" : ""); em.textContent = u.marka;
+        var et = document.createElement("span"); et.className = "etiket-tur"; et.textContent = u.tur || "";
+        fk.appendChild(em); fk.appendChild(et);
+      }
       else { fk.classList.add("bos"); fk.textContent = u.ad.charAt(0); }
       var yz = document.createElement("div"); yz.className = "urun-yazi";
       var rk = document.createElement("small"); rk.textContent = reyonAd[u.reyon] || "";
@@ -430,19 +455,22 @@
       filtreKutu.appendChild(b);
     }
     filtreButon("hepsi", "Tümü");
-    reyonlar.forEach(function(r){ if (urunler.some(function(u){ return u.reyon === r.id; })) filtreButon(r.id, r.ad); });
+    reyonlar.forEach(function(r){ if (gruplar[r.id]) filtreButon(r.id, r.ad); });
 
+    var toplamUygun = 0;
     function uygula(){
       var q = kucuk(giris.value.trim()), n = 0, gosterilen = 0;
-      var sinirli = secili === "hepsi" && !q && !tumu;
+      var sinirli = secili === "hepsi" && !q;   // "Tümü" görünümünde parça parça göster
       grid.querySelectorAll(".urun").forEach(function(li){
         var uygun = (secili === "hepsi" || li.dataset.reyon === secili) && (!q || li.dataset.ad.indexOf(q) > -1);
         if (uygun) n++;
-        var goster = uygun && (!sinirli || gosterilen < ILK);
+        var goster = uygun && (!sinirli || gosterilen < sinir);
         li.hidden = !goster; if (goster) gosterilen++;
       });
-      dahaBtn.hidden = !(sinirli && n > ILK);
-      sayi.textContent = n + " ürün" + (secili !== "hepsi" ? ", " + reyonAd[secili] : "");
+      toplamUygun = n;
+      sayi.textContent = (sinirli && gosterilen < n ? gosterilen + " / " : "") + n + " ürün" + (secili !== "hepsi" ? ", " + reyonAd[secili] : "");
+      dahaBtn.hidden = !(sinirli && !sonsuz && n > gosterilen);
+      gozcu.hidden = !(sinirli && sonsuz && n > gosterilen);
       yok.hidden = n > 0;
     }
     function sec(id){
@@ -452,9 +480,21 @@
     }
     giris.addEventListener("input", function(){ if (giris.value.trim() && secili !== "hepsi") { sec("hepsi"); } else { uygula(); } });
 
+    // "Tüm ürünleri göster" → sonsuz kaydırma başlar
+    dahaBtn.addEventListener("click", function(){ sonsuz = true; sinir += PARCA; uygula(); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function(girisler){
+        girisler.forEach(function(g){
+          if (g.isIntersecting && sonsuz && !gozcu.hidden) { sinir += PARCA; uygula(); }
+        });
+      }, { rootMargin: "600px 0px" }).observe(gozcu);
+    } else {
+      dahaBtn.addEventListener("click", function(){ sinir = urunler.length; uygula(); });
+    }
+
     function hashAc(){
       var m = location.hash.match(/^#r-(.+)$/);
-      if (m) { sec(m[1]); giris.value = ""; uygula(); document.getElementById("urunler").scrollIntoView(); }
+      if (m) { giris.value = ""; sec(m[1]); document.getElementById("urunler").scrollIntoView(); }
     }
     window.addEventListener("hashchange", hashAc);
     hashAc(); uygula();

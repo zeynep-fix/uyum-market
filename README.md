@@ -32,3 +32,9 @@ Statik, bağımlılıksız tek bir `index.html`.
 - `foto`: Unsplash kimliği ya da kendi görselin (ör. `img/urun/domates.jpg`). Boşsa fotoğrafsız sade kart çıkar.
 - Fiyat yok (bilerek). Dükkanda olmayan ürünleri sil.
 - Ana sayfada ilk 10 ürün görünür, "Tüm ürünleri göster" ile hepsi açılır.
+
+## Çerez onayı
+- Sitenin kendi çerezi yok. Yalnızca Google Haritalar iframe'i çerez kullanıyor; `data-src` ile bekletiliyor, ziyaretçi "Kabul et" ya da "Haritayı göster" derse yükleniyor.
+- Seçim tarayıcıda `localStorage` → `uyum-cerez` anahtarında `{k:"kabul"|"red", t:zaman}` olarak 1 yıl saklanıyor.
+- Alt bilgideki "Çerez tercihleri" çubuğu tekrar açar; `gizlilik.html` sayfasında da izin verilip geri alınabiliyor.
+- Siteye yeni bir dış hizmet eklenirse (analiz, WhatsApp butonu vb.) `gizlilik.html` tablosunu güncelle.

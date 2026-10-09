@@ -226,6 +226,24 @@
   .ara-bar{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--beyaz);border-top:1px solid var(--cizgi)}
   .ara-bar .btn{width:100%;padding:15px;font-size:.9rem}
   @media (min-width:760px){ .ara-bar{display:none} }
+
+  /* çerez bildirimi */
+  .cerez{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;max-width:780px;margin:0 auto;background:var(--murekkep);color:#f1ece4;padding:18px 20px;border-radius:4px;box-shadow:0 12px 32px rgba(0,0,0,.28);display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+  .cerez p{margin:0;flex:1 1 340px;font-size:.84rem;line-height:1.55}
+  .cerez a{color:#fff;font-weight:600}
+  .cerez-dugmeler{display:flex;gap:10px}
+  .cerez .btn{padding:12px 20px;min-width:110px}
+  .cerez .btn-cizgi{color:#fff}
+  @media (max-width:759px){
+    .cerez{left:10px;right:10px;bottom:calc(var(--ara-h,72px) + 10px);padding:16px}
+    .cerez-dugmeler{width:100%}
+    .cerez-dugmeler .btn{flex:1}
+  }
+  .harita-izin{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center;background:var(--krem)}
+  .harita-izin p{margin:0;max-width:440px;color:var(--soluk);font-size:.9rem}
+  .harita-izin .link{font-size:.85rem}
+  .link-btn{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer}
+  footer .yasal a{color:inherit}
 </style>
 </head>
 <body>
@@ -388,8 +406,13 @@
 
 <div class="harita" aria-label="Konum haritası">
   <a class="yedek" href="https://maps.google.com/?cid=9902812242018046156" rel="noopener">Haritayı Google Haritalar'da aç</a>
+  <div class="harita-izin" id="harita-izin">
+    <p>Harita Google tarafından sağlanır ve Google çerezleri kullanır. Bu yüzden yalnızca izin verirseniz yüklüyoruz.</p>
+    <button type="button" class="btn btn-kirmizi" id="harita-goster">HARİTAYI GÖSTER</button>
+    <a class="link" href="https://maps.google.com/?cid=9902812242018046156" rel="noopener">ya da Google Haritalar'da açın</a>
+  </div>
   <iframe title="Uyum Market'in haritadaki konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-    src="https://maps.google.com/maps?q=Uyum+Market,+%C3%9Csk%C3%BCp+Cd.+No:30,+%C3%87ankaya,+Ankara&amp;ll=39.8933452,32.857633&amp;hl=tr&amp;z=17&amp;output=embed"></iframe>
+    data-src="https://maps.google.com/maps?q=Uyum+Market,+%C3%9Csk%C3%BCp+Cd.+No:30,+%C3%87ankaya,+Ankara&amp;ll=39.8933452,32.857633&amp;hl=tr&amp;z=17&amp;output=embed"></iframe>
 </div>
 
 <footer>
@@ -398,10 +421,19 @@
       <b>UYUM</b>
       <p>Üsküp Cd. No:30, Çankaya/Ankara. Telefon: <a href="tel:+903124674247">(0312) 467 42 47</a></p>
       <p>© <span id="yil">2026</span> Uyum Market</p>
+      <p class="yasal"><a href="gizlilik.html">Çerez ve gizlilik</a> · <button type="button" class="link-btn cerez-ac">Çerez tercihleri</button></p>
     </div>
     <p class="kredi">Reyon fotoğrafları: Unsplash (Randy Fath, Ömer Haktan Bulut, R. G, Mae Mu, Denise Johnson, Zhen Yao, Denny Müller, JESHOOTS.COM, Shelley Pauls).</p>
   </div>
 </footer>
+
+<div class="cerez" id="cerez" role="region" aria-label="Çerez bildirimi" hidden>
+  <p>Sitemizin kendi çerezi yok. Sayfanın altındaki harita Google tarafından sağlanır ve Google çerezleri kullanır; haritayı yalnızca kabul ederseniz yüklüyoruz. <a href="gizlilik.html">Ayrıntılar</a></p>
+  <div class="cerez-dugmeler">
+    <button type="button" class="btn btn-cizgi" id="cerez-red">REDDET</button>
+    <button type="button" class="btn btn-kirmizi" id="cerez-kabul">KABUL ET</button>
+  </div>
+</div>
 
 <div class="ara-bar"><a class="btn btn-kirmizi" href="tel:+903124674247">ARA, SİPARİŞ VER</a></div>
 
@@ -514,6 +546,35 @@
       if (tr.dataset.gun.split(",").indexOf(String(gun)) > -1) tr.classList.add("bugun");
     });
     document.getElementById("yil").textContent = simdi.getFullYear();
+  })();
+</script>
+<script>
+  (function(){
+    var ANAHTAR = "uyum-cerez", SURE = 365 * 864e5;
+    var bar = document.getElementById("cerez"), izin = document.getElementById("harita-izin");
+    var cerceve = document.querySelector(".harita iframe"), araBar = document.querySelector(".ara-bar");
+    if (!bar || !cerceve) return;
+    function oku(){
+      try { var v = JSON.parse(localStorage.getItem(ANAHTAR)); if (v && Date.now() - v.t < SURE) return v.k; } catch(e){}
+      return null;
+    }
+    function yaz(k){ try { localStorage.setItem(ANAHTAR, JSON.stringify({k:k, t:Date.now()})); } catch(e){} }
+    function uygula(k){
+      if (k === "kabul") { if (!cerceve.getAttribute("src")) cerceve.setAttribute("src", cerceve.dataset.src); izin.hidden = true; }
+      else { cerceve.removeAttribute("src"); izin.hidden = false; }
+    }
+    function sec(k){ yaz(k); uygula(k); bar.hidden = true; }
+    function boy(){ if (araBar) document.documentElement.style.setProperty("--ara-h", araBar.offsetHeight + "px"); }
+    boy(); window.addEventListener("resize", boy);
+    var mevcut = oku();
+    uygula(mevcut);
+    bar.hidden = mevcut !== null;
+    document.getElementById("cerez-kabul").addEventListener("click", function(){ sec("kabul"); });
+    document.getElementById("cerez-red").addEventListener("click", function(){ sec("red"); });
+    document.getElementById("harita-goster").addEventListener("click", function(){ sec("kabul"); });
+    document.querySelectorAll(".cerez-ac").forEach(function(b){
+      b.addEventListener("click", function(){ bar.hidden = false; document.getElementById("cerez-kabul").focus(); });
+    });
   })();
 </script>
 </body>

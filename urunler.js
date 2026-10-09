@@ -75,7 +75,7 @@ window.URUNLER = [
   { ad: "Tahin",         reyon: "kahvalti", foto: "1747932984398-dd52d84886d6" },
 
   // Şarküteri
-  { ad: "Sucuk",         reyon: "sarkuteri", foto: "1691480241974-92481cef09ff" },
+  { ad: "Sucuk",         reyon: "sarkuteri", foto: "1724158310182-5a3cc2299030" },
   { ad: "Salam",         reyon: "sarkuteri", foto: "1769772619357-216a3085f718" },
 
   // Ekmek ve fırın
@@ -129,7 +129,7 @@ window.URUNLER = [
   { ad: "Tahin helvası", reyon: "kahvalti", foto: "1678977252022-303f13c019cc" },
   { ad: "Fıstık ezmesi", reyon: "kahvalti", foto: "1691480208637-6ed63aac6694" },
   { ad: "Margarin", reyon: "kahvalti", foto: "1660190368311-64d54386e494" },
-  { ad: "Sosis", reyon: "sarkuteri", foto: "1638368593249-7cadb261e8b3" },
+  { ad: "Sosis", reyon: "sarkuteri", foto: "1691480241974-92481cef09ff" },
   { ad: "Pastırma", reyon: "sarkuteri", foto: "1777557863930-ed0d73e970dc" },
   { ad: "Hindi füme", reyon: "sarkuteri", foto: "1689774504345-6cf299b0b312" },
   { ad: "Tam buğday ekmeği", reyon: "ekmek", foto: "1509440159596-0249088772ff" },

@@ -75,7 +75,7 @@ window.URUNLER = [
   { ad: "Tahin",         reyon: "kahvalti", foto: "1747932984398-dd52d84886d6" },
 
   // Şarküteri
-  { ad: "Sucuk",         reyon: "sarkuteri", foto: "1724158310182-5a3cc2299030" },
+  { ad: "Sucuk",         reyon: "sarkuteri", foto: "1724158311045-20bb24b86ea3" },
   { ad: "Salam",         reyon: "sarkuteri", foto: "1769772619357-216a3085f718" },
 
   // Ekmek ve fırın
